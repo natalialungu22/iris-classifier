@@ -3,9 +3,10 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import joblib
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import confusion_matrix, accuracy_score
 
 def main(test_size, random_state):
@@ -45,6 +46,8 @@ def main(test_size, random_state):
     plt.title("Confusion Matrix for Iris Decision Tree")
     plt.savefig("outputs/confusion_matrix.png", dpi=300, bbox_inches="tight")
     plt.close()
+    # Saving the trained model
+    joblib.dump(model, "outputs/iris_model.joblib")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train Iris Decision Tree Classifier")
